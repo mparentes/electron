@@ -94,7 +94,7 @@ class TestsList():
     return supported_binaries
 
   def run(self, binaries, output_dir=None, verbosity=Verbosity.CHATTY,
-      disabled_tests_policy=DisabledTestsPolicy.DISABLED):
+      disabled_tests_policy=DisabledTestsPolicy.DISABLE):
     # Don't run anything twice.
     binaries = set(binaries)
 
@@ -117,12 +117,12 @@ class TestsList():
     return suite_returncode
 
   def run_only(self, binary_name, output_dir=None, verbosity=Verbosity.CHATTY,
-      disabled_tests_policy=DisabledTestsPolicy.DISABLED):
+      disabled_tests_policy=DisabledTestsPolicy.DISABLE):
     return self.run([binary_name], output_dir, verbosity,
                     disabled_tests_policy)
 
   def run_all(self, output_dir=None, verbosity=Verbosity.CHATTY,
-      disabled_tests_policy=DisabledTestsPolicy.DISABLED):
+      disabled_tests_policy=DisabledTestsPolicy.DISABLE):
     return self.run(self.get_for_current_platform(), output_dir, verbosity,
                     disabled_tests_policy)
 
