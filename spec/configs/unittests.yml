@@ -5,11 +5,12 @@ tests:
       # are used only to explain why a group of tests is disabled.
       disabled:
         undecided:
-          - FilePathTest*
+          - FilePathTest.FromUTF8Unsafe_And_AsUTF8Unsafe
           - PartitionReallocReturnNullTest.RepeatedReturnNullDirect
-          - RTLTest*
-          - SysStrings*
-          - UTFOffsetStringConversionsTest*
+          - RTLTest.WrapPathWithLTRFormatting
+          - SysStrings.SysNativeMBAndWide
+          - SysStrings.SysNativeMBToWide
+          - SysStrings.SysWideToNativeMB
           - WeakPtrDeathTest*
   - cc_unittests
   - cc_blink_unittests
@@ -18,6 +19,11 @@ tests:
         # TODO(alexeykuzmin): Should those be fixed?
         - _/DOMStorageMapParamTest.EnforcesQuota/0
         - _/DOMStorageMapParamTest.EnforcesQuota/1
+        - BackgroundSyncManagerTest.Register
+        - FrameServiceBaseTest.ConnectionError
+        - MediaSessionControllerTest.NoAudioNoSession
+        - MediaStreamUIProxyFeaturePolicyTest.FeaturePolicy
+        - PresentationServiceImplTest.ListenForScreenAvailability
   - crypto_unittests
   - device_unittests
   - gin_unittests
@@ -32,38 +38,18 @@ tests:
   - net_unittests:
       disabled:
         # TODO(alexeykuzmin): Should those be fixed?
-        - EndToEndTestsWithTls*
-        - FilenameUtilTest*
-        - HTTPSAIATest.AIAFetching
-        - HTTPSCRLSetTest*
-        - HTTPSEVCRLSetTest*
-        - HTTPSFallbackTest*
-        - HTTPSHardFailTest.FailsOnOCSPInvalid
-        - HTTPSOCSPTest*
-        - HTTPSRequestTest*
-        - HTTPSSessionTest*
-        - OCSPVerify*
-        - ProxyConfigServiceLinuxTest*
-        - SSLClientSocketCertRequestInfoTest*
-        - SSLClientSocketChannelIDTest*
-        - SSLClientSocketFalseStartTest*
-        - SSLClientSocketReadTest*
-        - SSLClientSocketTest*
-        - TokenBindingURLRequestTest*
-        - UDPSocketTest*
-        - URLRequestTestFTP*
-        - URLRequestTestHTTP*
-        - WebSocketEndToEndTest*
+        - EndToEndTestsWithTls/EndToEndTestWithTls.SimpleRequestResponsev6/*
+        - FilenameUtilTest.GenerateFileName
+        - SSLClientSocketTest.Connect
+        - UDPSocketTest.ClientGetLocalPeerAddresses
+        - UDPSocketTest.ClientSetDoNotFragment
   - ppapi_unittests
   - printing_unittests
   - skia_unittests
   - sql_unittests
   - storage_unittests
   - gn_unittests
-  - ui_base_unittests:
-      disabled:
-        # TODO(alexeykuzmin): Should it be fixed?
-        - AcceleratorTest.GetShortcutText
+  - ui_base_unittests
   - compositor_unittests
   - display_unittests
   - events_unittests
@@ -71,10 +57,7 @@ tests:
   - url_unittests
   - url_ipc_unittests
   # V8
-  - unittests:
-      disabled:
-        # TODO(alexeykuzmin): Should it be fixed?
-        - LiveRangeUnitTest*
+  - unittests
   # Blink
   - blink_common_unittests
   - blink_heap_unittests
@@ -84,7 +67,7 @@ tests:
         - AnimatedPNGTests*
         - AnimatedWebPTests*
         - AnimatedWEBPTests.clearCacheExceptFrameWithAncestors
-        - BitmapImageTest*
+        - BitmapImageTest.*
         - BMPImageDecoderTest*
         - DecodedImageOrientationHistogramTest*
         - DecodedImageTypeHistogramTest*
@@ -94,10 +77,17 @@ tests:
         - ICOImageDecoderTests*
         - JPEGImageDecoderTest*
         - FilePathConversionTest*
+        - PaintPropertyNodeTest.InitialStateAndReset
         - PNGTests*
         - StaticPNGTests*
         - StaticWebPTests*
-  - webkit_unit_tests
+  - webkit_unit_tests:
+      disabled:
+        - VirtualTimeTest.AllowVirtualTimeToAdvance
+        - Document/ThreadableLoaderTest.CancelAfterStart/0
+        - ModernMediaControlsImplTest.ControlsShouldUseSafeAreaInsets
+        - ScriptRunnerTest.QueueReentrantScript_InOrder
+        - ScrollbarsTestWithVirtualTimer.PressScrollbarButtonOnInfiniteScrolling
   - wtf_unittests
   # Third party
   - angle_unittests
@@ -109,7 +99,10 @@ tests:
       platform: linux
       disabled:
         # TODO(alexeykuzmin): Should these be fixed?
-        - BrokerProcess*
+        - BrokerProcess.OpenFilePermsWithClientCheck
+        - BrokerProcess.OpenFilePermsWithClientCheckNoEnt
+        - BrokerProcess.OpenOpenFilePermsNoClientCheck
+        - BrokerProcess.OpenOpenFilePermsNoClientCheckNoEnt
         - SandboxBPF.SigBus
   - dbus_unittests:
       platform: linux
